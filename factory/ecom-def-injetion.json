@@ -1,0 +1,15 @@
+{
+	"name": "ecom-def-injetion",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Enabled",
+			"editable": true
+		}
+	},
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "39de29f7-52ba-4669-8ffb-3b6e7fa31b2a",
+		"tenantId": "bf46320a-d380-4051-a061-e7920d54824f"
+	}
+}
