@@ -76,13 +76,7 @@
 								"sink": {
 									"type": "DelimitedTextSink",
 									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings",
-										"copyBehavior": "FlattenHierarchy",
-										"metadata": [
-											{
-												"value": ""
-											}
-										]
+										"type": "AzureBlobFSWriteSettings"
 									},
 									"formatSettings": {
 										"type": "DelimitedTextWriteSettings",
@@ -106,7 +100,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"relative_path": {
-											"value": "@concat('Bhevendra/ML-Datasets/refs/heads/main/retail_data/',item().file_name)",
+											"value": "@concat('hevendra/ML-Datasets/refs/heads/main/retail_data/',item().file_name)",
 											"type": "Expression"
 										}
 									}
