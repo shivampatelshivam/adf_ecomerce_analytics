@@ -287,6 +287,103 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Copy_data_github_withparameter')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_data_github_withparameter",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "HttpReadSettings",
+									"requestMethod": "GET"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings",
+									"copyBehavior": "FlattenHierarchy"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ds_source_withparameter",
+								"type": "DatasetReference",
+								"parameters": {
+									"relative_path": {
+										"value": "@concat('Bhevendra/ML-Datasets/refs/heads/main/retail_data/',pipeline().parameters.file_name\n)",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "da_adls_withparameter",
+								"type": "DatasetReference",
+								"parameters": {
+									"folder_name": {
+										"value": "@concat('retail-data/',pipeline().parameters.folder_name)",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"file_name": {
+						"type": "string",
+						"defaultValue": "customers_csv"
+					},
+					"folder_name": {
+						"type": "string",
+						"defaultValue": "customers"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_source_withparameter')]",
+				"[concat(variables('factoryId'), '/datasets/da_adls_withparameter')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/customer_copy_github')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -592,103 +689,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_customer_source')]",
 				"[concat(variables('factoryId'), '/datasets/da_adls')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy_data_github_withparameter",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "HttpReadSettings",
-									"requestMethod": "GET"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings",
-									"copyBehavior": "FlattenHierarchy"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ds_source_withparameter",
-								"type": "DatasetReference",
-								"parameters": {
-									"relative_path": {
-										"value": "@concat('Bhevendra/ML-Datasets/refs/heads/main/retail_data/',pipeline().parameters.file_name\n)",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "da_adls_withparameter",
-								"type": "DatasetReference",
-								"parameters": {
-									"folder_name": {
-										"value": "@concat('retail-data/',pipeline().parameters.folder_name)",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"file_name": {
-						"type": "string",
-						"defaultValue": "customers_csv"
-					},
-					"folder_name": {
-						"type": "string",
-						"defaultValue": "customers"
-					}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ds_source_withparameter')]",
-				"[concat(variables('factoryId'), '/datasets/da_adls_withparameter')]"
 			]
 		},
 		{
