@@ -1,5 +1,5 @@
 {
-	"name": "pipeline2",
+	"name": "sales_copy_github",
 	"properties": {
 		"activities": [
 			{
@@ -141,7 +141,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_sales_order_adls",
+						"referenceName": "ds_sale_adls",
 						"type": "DatasetReference"
 					}
 				]
