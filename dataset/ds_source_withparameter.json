@@ -1,0 +1,26 @@
+{
+	"name": "ds_source_withparameter",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_github_https",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"relative_path": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
