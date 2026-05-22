@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "sales",
+				"name": "sales_copy_github",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
