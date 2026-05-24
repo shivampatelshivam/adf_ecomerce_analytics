@@ -29,7 +29,8 @@
 					"dataset": {
 						"referenceName": "ds_metadata_pipeline",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -100,7 +101,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"relative_path": {
-											"value": "@concat('hevendra/ML-Datasets/refs/heads/main/retail_data/',item().file_name)",
+											"value": "@concat('Bhevendra/ML-Datasets/refs/heads/main/retail_data/',item().file_name)",
 											"type": "Expression"
 										}
 									}
