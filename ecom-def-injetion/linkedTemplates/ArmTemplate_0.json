@@ -159,7 +159,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "files.jason.txt",
+						"fileName": "files.json",
 						"folderPath": "meta-data",
 						"fileSystem": "retail-data"
 					}
@@ -802,7 +802,8 @@
 										"sink": {
 											"type": "DelimitedTextSink",
 											"storeSettings": {
-												"type": "AzureBlobFSWriteSettings"
+												"type": "AzureBlobFSWriteSettings",
+												"copyBehavior": "FlattenHierarchy"
 											},
 											"formatSettings": {
 												"type": "DelimitedTextWriteSettings",
@@ -838,7 +839,7 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"folder_name": {
-													"value": "@concat('rtail-data/',item().folder_name)",
+													"value": "@concat('retail-data/',item().folder_name)",
 													"type": "Expression"
 												}
 											}
